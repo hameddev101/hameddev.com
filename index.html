@@ -3,42 +3,370 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Coming soon! Specialised in Cloud Development, Intune, Windows, Mac MDM, and MS 365. Stay tuned.">
+    <meta name="description" content="Coming soon — specialising in Cloud Development, Intune, Windows, Mac MDM (Jamf), and Microsoft 365.">
     <title>My Professional Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
       "name": "My Professional Portfolio",
-      "description": "Specialising in Cloud Development, Intune, Windows, Mac MDM (Jamf), and Microsoft 365."
+      "description": "Specialising in Cloud Development, Intune, Windows, Apple,  Mac MDM (Jamf), and Microsoft 365."
     }
     </script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #080c10;
+            --surface: #0e1318;
+            --border: rgba(255,255,255,0.07);
+            --accent: #00d4ff;
+            --accent2: #7b61ff;
+            --text: #f0f4f8;
+            --muted: #6b7a8d;
+            --font-display: 'Syne', sans-serif;
+            --font-mono: 'DM Mono', monospace;
+        }
+
+        html, body {
+            min-height: 100%;
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            overflow-x: hidden;
+        }
+
+        /* Grid background */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Glow orbs */
+        body::after {
+            content: '';
+            position: fixed;
+            top: -200px;
+            left: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb2 {
+            position: fixed;
+            bottom: -150px;
+            right: -150px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(123,97,255,0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Layout */
+        .wrapper {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            height: 36px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .status-pill {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--muted);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 5px 12px;
+            letter-spacing: 0.05em;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.8); }
+        }
+
+        /* Main */
+        main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 5rem 0 4rem;
+        }
+
+        .eyebrow {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards 0.2s;
+        }
+
+        h1 {
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards 0.35s;
+        }
+
+        h1 .line2 {
+            display: block;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .description {
+            font-size: 1.05rem;
+            color: var(--muted);
+            line-height: 1.7;
+            max-width: 520px;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards 0.5s;
+        }
+
+        /* Tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 3.5rem;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards 0.65s;
+        }
+
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            padding: 5px 12px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            background: var(--surface);
+            letter-spacing: 0.04em;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .tag:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* CTA */
+        .cta-section {
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards 0.8s;
+        }
+
+        .cta-label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 12px;
+            letter-spacing: 0.05em;
+        }
+
+        .email-form {
+            display: flex;
+            gap: 0;
+            max-width: 440px;
+        }
+
+        .email-form input {
+            flex: 1;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-right: none;
+            border-radius: 6px 0 0 6px;
+            padding: 0 16px;
+            height: 48px;
+            color: var(--text);
+            font-family: var(--font-mono);
+            font-size: 13px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .email-form input::placeholder { color: var(--muted); }
+
+        .email-form input:focus {
+            border-color: rgba(0,212,255,0.4);
+        }
+
+        .email-form button {
+            height: 48px;
+            padding: 0 22px;
+            background: var(--accent);
+            color: #000;
+            font-family: var(--font-display);
+            font-size: 13px;
+            font-weight: 700;
+            border: none;
+            border-radius: 0 6px 6px 0;
+            cursor: pointer;
+            white-space: nowrap;
+            letter-spacing: 0.03em;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .email-form button:hover { background: #33ddff; }
+        .email-form button:active { transform: scale(0.98); }
+
+        .success-msg {
+            display: none;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--accent);
+            margin-top: 12px;
+            padding: 10px 14px;
+            border: 1px solid rgba(0,212,255,0.2);
+            border-radius: 6px;
+            background: rgba(0,212,255,0.05);
+            max-width: 440px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards 1s;
+        }
+
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.04em;
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 500px) {
+            .email-form { flex-direction: column; }
+            .email-form input { border-right: 1px solid var(--border); border-bottom: none; border-radius: 6px 6px 0 0; }
+            .email-form button { border-radius: 0 0 6px 6px; }
+            .status-pill { display: none; }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <picture>
-            <source srcset="logoNew.webp" type="image/webp">
-            <img src="logonew.png" alt="Logo of my brand or company" class="logo">
-        </picture>
-    </header>
+    <div class="orb2"></div>
+    <div class="wrapper">
+        <header>
+            <picture>
+                <source srcset="logoNew.webp" type="image/webp">
+                <img src="logonew.png" alt="Logo" class="logo">
+            </picture>
+            <div class="status-pill">
+                <span class="status-dot"></span>
+                In development
+            </div>
+        </header>
 
-    <main>
-        <h1>Hello World! My website is coming soon.</h1>
-        
-        <p>Specializing in Cloud Development, Intune, Windows, Mac MDM (Jamf), and MS 365.</p>
+        <main>
+            <p class="eyebrow">Portfolio — coming soon</p>
+            <h1>
+                Building things<br>
+                <span class="line2">in the cloud.</span>
+            </h1>
+            <p class="description">
+                A new portfolio is on its way. Specialising in Cloud Development, Intune, Windows &amp; Mac MDM (Jamf), and Microsoft 365.
+            </p>
 
-        <section class="cta-section">
-            <p>Subscribe to get notified when we're live!</p>
-            <form class="email-form">
-                <input type="email" placeholder="Enter your email" required>
-                <button type="submit">Notify Me</button>
-            </form>
-        </section>
-    </main>
+            <div class="tags">
+                <span class="tag">Cloud Development</span>
+                <span class="tag">Microsoft Intune</span>
+                <span class="tag">Windows MDM</span>
+                <span class="tag">Mac MDM · Jamf</span>
+                <span class="tag">Microsoft 365</span>
+            </div>
 
-    <footer>
-        <p>&copy; 2026 My Professional Portfolio. All rights reserved.</p>
-    </footer>
+            <section class="cta-section">
+                <p class="cta-label">// get notified when it's live</p>
+                <form class="email-form" id="notifyForm">
+                    <input type="email" id="emailInput" placeholder="your@email.com" required autocomplete="email">
+                    <button type="submit">Notify me</button>
+                </form>
+                <p class="success-msg" id="successMsg">&#10003; You're on the list — I'll be in touch!</p>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 My Professional Portfolio. All rights reserved.</p>
+            <p>Southampton, UK</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('notifyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            if (email) {
+                this.style.display = 'none';
+                document.getElementById('successMsg').style.display = 'block';
+            }
+        });
+    </script>
 </body>
 </html>
